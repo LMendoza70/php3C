@@ -34,5 +34,52 @@
             //paso 6 arrojo resultados
             return $users;
         }
+
+        //getById metodo que extrae un usuario por su id
+        public function getById($id){
+            //paso 1 creamos la consulta
+            $sql="SELECT * FROM user WHERE IdUser = $id";
+            //paso 2 obtenemos la coneccion
+            $connection=$this->userConnection->getConnection();
+            //paso 3 ejecutamos la consulta
+            $result=$connection->query($sql);
+            //paso 4 verificamos que existan resultados
+            if($result && $result->num_rows >0){
+                $user=$result->fetch_assoc();                
+            }else{
+                $user=false;
+            }
+            //paso 5 cerramos la coneccion
+            $this->UserConnection->closeConnection();
+            //paso 6
+            return $user;
+        }
+
+        //metodo para verificar credenciales de logeo
+        public function getCredentials($us,$ps){
+            //paso 1 creamos la consulta
+            $sql="SELECT * FROM user WHERE Usuario = $us AND Password = $ps";
+            //paso 2 obtenemos la coneccion
+            $connection=$this->userConnection->getConnection();
+            //paso 3 ejecutamos la consulta
+            $result=$connection->query($sql);
+            //paso 4 verificamos que existan resultados
+            if($result && $result->num_rows >0){
+                $user=$result->fetch_assoc();                
+            }else{
+                $user=false;
+            }
+            //paso 5 cerramos la coneccion
+            $this->UserConnection->closeConnection();
+            //paso 6 arrojamos el resultado
+            return $user;
+        }
+
+        //metodo para insertar usuarios
+
+        //metodo para editar usuarios
+
+        //metodo para eliminar usuarios
+
     }
 ?>
