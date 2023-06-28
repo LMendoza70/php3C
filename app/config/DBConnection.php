@@ -7,7 +7,7 @@ class DBConnection{
     //definimos el contructor de la clase y en este conectamos con la base 
     public function __construct(){
         //requerir los datos o credenciales de coneccio  al la base de datos 
-        require_once('./config.php');
+        require_once('app/config/config.php');
         //creamos la instancia de la coneccion a base de datos 
         $this->connection=new mysqli(DB_HOST, DB_USER, DB_PASSWORD,DB_NAME);
         //manejo de errores

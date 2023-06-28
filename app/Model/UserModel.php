@@ -6,7 +6,7 @@
         //definimos el contructor de la clase usermodel
         public function __construct(){
             //requiero la clase dbconnection 
-            require_once('../config/DBConnection.php');
+            require_once('app/config/DBConnection.php');
             //instranciamos userconnection con dbconnection 
             $this->UserConnection=new DBConnection();
         }
@@ -30,7 +30,7 @@
                 $users[]=$user;
             }
             //paso 5 cierro la coneccion 
-            $this->UserConnection->closeConnection();
+            $this->UserConnection->closeConecction();
             //paso 6 arrojo resultados
             return $users;
         }
@@ -58,9 +58,9 @@
         //metodo para verificar credenciales de logeo
         public function getCredentials($us,$ps){
             //paso 1 creamos la consulta
-            $sql="SELECT * FROM user WHERE Usuario = $us AND Password = $ps";
+            $sql="SELECT * FROM user WHERE Usuario = '".$us."' AND Password = '".$ps."'";
             //paso 2 obtenemos la coneccion
-            $connection=$this->userConnection->getConnection();
+            $connection =$this->UserConnection->getconnection();
             //paso 3 ejecutamos la consulta
             $result=$connection->query($sql);
             //paso 4 verificamos que existan resultados
@@ -70,7 +70,7 @@
                 $user=false;
             }
             //paso 5 cerramos la coneccion
-            $this->UserConnection->closeConnection();
+            $this->UserConnection->closeConecction();
             //paso 6 arrojamos el resultado
             return $user;
         }

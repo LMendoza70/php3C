@@ -11,7 +11,7 @@
     //con operador ternario
     $control=isset($_GET['C'])?$_GET['C']:'';
     //armamos la ruta que se va a seguir
-    $ruta=controladores.$control."php";
+    $ruta=controladores.$control.".php";
     //verificamos que exusta el archivo de ruta o que no se haya ido en blanco
     if(!empty($control) && file_exists($ruta)){
         include_once($ruta);
