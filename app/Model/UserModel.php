@@ -37,21 +37,21 @@
 
         //getById metodo que extrae un usuario por su id
         public function getById($id){
-            //paso 1 creamos la consulta
-            $sql="SELECT * FROM user WHERE IdUser = $id";
-            //paso 2 obtenemos la coneccion
-            $connection=$this->userConnection->getConnection();
-            //paso 3 ejecutamos la consulta
-            $result=$connection->query($sql);
-            //paso 4 verificamos que existan resultados
-            if($result && $result->num_rows >0){
-                $user=$result->fetch_assoc();                
+            //creamos consulta
+            $sql="SELECT * FROM user WHERE IdUser='".$id."'";
+            //obtenemos la coneccion 
+            $connection=$this->UserConnection->getConnection();
+            //ejecutamos la consulta
+            $reslt=$connection->query($sql);
+            //verificamos que traiga datos y los sacamos a una variable
+            if($reslt && $reslt->num_rows > 0){
+                $user=$reslt->fetch_assoc();
             }else{
                 $user=false;
             }
-            //paso 5 cerramos la coneccion
-            $this->UserConnection->closeConnection();
-            //paso 6
+            //cerramos la coneccion
+            $this->UserConnection->closeConecction();
+            //arrojamos resultados
             return $user;
         }
 
@@ -76,10 +76,71 @@
         }
 
         //metodo para insertar usuarios
+        public function insert($user){
+            //paso1 creamos la consulta
+            $sql="INSERT INTO user(Nombre, ApPaterno, ApMaterno, Usuario, Password, Sexo, FchNacimiento) 
+            VALUES('".$user['Nombre']."','".$user['ApPaterno']."','".$user['ApMaterno']."',
+            '".$user['Usuario']."','".$user['Password']."','".$user['Sexo']."','".$user['FchNacimiento']."')";
+            //paso 2 conectamos a la base de datos
+            $connection =$this->UserConnection->getConnection();
+            //paso 3 ejecutamos la consulta
+            $reslt = $connection->query($sql);
+            //paso 4 preparamos la respuesta
+            if($reslt){
+                $res=true;
+            }else{
+                $res=false;
+            }
+            //paso 5 cerramos la coneccion
+            $this->UserConnection->closeConecction();
+            //paso 6 arrojamos resultados
+            return $res;
+        }
 
         //metodo para editar usuarios
+        public function update($user){
+            //paso1 creamos la consulta
+            $sql="UPDATE user SET Nombre='".$user['Nombre']."', ApPaterno='".$user['ApPaterno']."', 
+            ApMaterno='".$user['ApMaterno']."', Usuario='".$user['Usuario']."', Password='".$user['Password']."', 
+            Sexo='".$user['Sexo']."', FchNacimiento='".$user['FchNacimiento']."' WHERE IdUser=".$user['IdUser'];
+            //paso 2 conectamos a la base de datos
+            $connection =$this->UserConnection->getconnection();
+            //paso 3 ejecutamos la consulta
+            $reslt = $connection->query($sql);
+            //paso 4 preparamos la respuesta
+            if($reslt){
+                $res=true;
+            }else{
+                $res=false;
+            }
+            //paso 5 cerramos la coneccion
+            $this->UserConnection->closeConecction();
+            //paso 6 arrojamos resultados
+            return $res;
+        }
 
         //metodo para eliminar usuarios
+        //metodo para eliminar un usuario por su ID
+        public function delete($id){
+            //paso1 creamos la consulta
+            $sql="DELETE FROM user WHERE IdUser=$id";
+            //paso 2 conectamos a la base de datos
+            $connection =$this->UserConnection->getConnection();
+            //paso 3 ejecutamos la consulta
+            $reslt = $connection->query($sql);
+            //paso 4 preparamos la respuesta
+            if($reslt){
+                $res=true;
+            }else{
+                $res=false;
+            }
+            //paso 5 cerramos la coneccion
+            $this->UserConnection->closeConecction();
+            //paso 6 arrojamos resultados
+            return $res;
+        }
+            
+
 
     }
 ?>
