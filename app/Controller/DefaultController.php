@@ -7,9 +7,9 @@
         // definimos el metodo index de nuestro controlador 
         public function index(){
             //inicializamos a vista con lo que vamos a mostrar en la plantilla 
-            $vista="app/View/IndexAdminView.php";
+            $vista="app/View/admin/IndexAdminView.php";
             //incluimos a la plantilla 
-            include_once("app/View/PlantillaAdminView.php");
+            include_once("app/View/admin/PlantillaAdminView.php");
         }
 
     }
