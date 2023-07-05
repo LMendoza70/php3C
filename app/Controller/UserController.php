@@ -33,9 +33,12 @@ require_once("app/model/UserModel.php");
                         'Sexo'=>$_POST['sexo'],
                         'FchNacimiento'=>$_POST['fchnac']
                     );
+                    
                     //llamamos al metodo del modelo que agrega al usuario a la base de datos
                     $modelo=new UserModel();
-                    $modelo->insert($datos);
+                    $res= $modelo->insert($datos);
+                    //podria poner una consicion en la que si el elemnto fue insertado correctamente
+                    //llamaria al index de usuarios y si no llamaria al formulario de agregar
                     //redireccionamos al index de usuarios
                     header("Location:http://localhost/php3c/?C=UserController&M=index");
             }
