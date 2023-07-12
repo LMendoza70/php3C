@@ -9,8 +9,15 @@
             //inicializamos a vista con lo que vamos a mostrar en la plantilla 
             $vista="app/View/admin/IndexAdminView.php";
             //incluimos a la plantilla 
-            include_once("app/View/admin/PlantillaAdminView.php");
+            //iniciamos la sesion
+            session_start();
+            //preguntamos si esta logueado
+            if(isset($_SESSION['logedin']) && $_SESSION['logedin']==true){
+                include_once("app/View/admin/PlantillaAdminView.php");
+            }else{
+                include_once("app/View/admin/Plantilla2AdminView.php");
+            }
+            
         }
 
     }
-?>

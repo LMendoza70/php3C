@@ -48,7 +48,7 @@
     </p>
     <p>
       <label for="avatar">Imagen de perfil de usuario : </label><br>
-      <input type="file" name="avatar" id="avatar" accept="image/jpeg">
+      <input type="file" name="avatar" id="avatar" accept="image/*">
     </p>
     <p><input type="submit" value="Add User"></p>
   </form>
